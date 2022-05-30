@@ -1,0 +1,47 @@
+<div
+  class="container"
+  style="
+    border: 3px solid black;
+    width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+  "
+>
+  <div class="row">
+    <div class="col">
+      <form #f="ngForm">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="Title"
+            #title
+            ngModel
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <textarea
+            name="content"
+            id="content"
+            cols="30"
+            rows="10"
+            placeholder="Express your Feelings Here......"
+            ngModel
+            required
+          ></textarea>
+        </div>
+        <button
+          class="btn btn-primary"
+          [disabled]="!f.valid"
+          (click)="createPost(f.value)"
+        >
+          Post
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

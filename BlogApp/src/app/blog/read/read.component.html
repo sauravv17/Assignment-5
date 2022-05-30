@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col">
+    <button class="btn btn-sm btn-primary" (click)="onFetchPost()">
+      Fetch Post
+    </button>
+  </div>
+  <div class="row m-3">
+    <div class="col">
+      <p *ngIf="fetchedPosts.length < 1">No Posts Available !!</p>
+      <ul class="list-group" *ngIf="fetchedPosts.length >= 1">
+        <li class="list-group-item" *ngFor="let post of fetchedPosts">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.content }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
