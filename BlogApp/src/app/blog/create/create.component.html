@@ -8,17 +8,16 @@
     margin-top: 20px;
   "
 >
-  <div class="row">
-    <div class="col">
-      <form #f="ngForm">
+  <form #f="ngForm">
+    <div class="row">
+      <div class="col">
         <div class="form-group">
           <input
             type="text"
             class="form-control"
             name="title"
             placeholder="Title"
-            #title
-            ngModel
+            [(ngModel)]="blogTitle"
             required
           />
         </div>
@@ -30,7 +29,7 @@
             cols="30"
             rows="10"
             placeholder="Express your Feelings Here......"
-            ngModel
+            [(ngModel)]="blogContent"
             required
           ></textarea>
         </div>
@@ -38,10 +37,11 @@
           class="btn btn-primary"
           [disabled]="!f.valid"
           (click)="createPost(f.value)"
+          (click)="successMessage()"
         >
           Post
         </button>
-      </form>
+      </div>
     </div>
-  </div>
+  </form>
 </div>

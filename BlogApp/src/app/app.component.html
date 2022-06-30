@@ -1,2 +1,22 @@
-<app-home></app-home>
-<app-blog></app-blog>
+<div>
+  <nav class="navbar bg-light navbar-dark bg-dark mb-3 navbar-expand-sm">
+    <div class="container">
+      <a class="navbar-brand">Letters</a>
+      <ul class="navbar-nav">
+        <li role="presentation" class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="viewblogs">View Blogs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col">
+      <router-outlet></router-outlet>
+      <app-home></app-home>
+      <app-blog></app-blog>
+    </div>
+  </div>
+</div>

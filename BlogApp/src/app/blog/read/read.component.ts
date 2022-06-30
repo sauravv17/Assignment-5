@@ -1,22 +1,34 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PostData } from './postdata.model';
 import { map } from 'rxjs';
+import { EditService } from '../services/edit-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-read',
   templateUrl: './read.component.html',
   styleUrls: ['./read.component.css'],
 })
 export class ReadComponent implements OnInit {
+  constructor(
+    private http: HttpClient,
+    private editService: EditService,
+    private router: Router
+  ) {}
+  @Input()
+  blogTitle: string = ' ';
+  blogContent = '';
   fetchedPosts: PostData[] = [];
-  constructor(private http: HttpClient) {}
   firebaseUrl = 'https://blogapp-bde91-default-rtdb.firebaseio.com/posts.json';
   ngOnInit(): void {
-    //this.fetchPosts();
+    this.blogTitle = this.editService.getTitle();
+    this.blogContent = this.editService.getContent();
   }
 
   onFetchPost() {
     this.fetchPosts();
+    this.blogTitle = 'Your Blogs: ';
+    this.blogContent = '';
   }
 
   fetchPosts() {
@@ -34,5 +46,21 @@ export class ReadComponent implements OnInit {
       .subscribe((posts) => {
         this.fetchedPosts = posts;
       });
+  }
+
+  deleteAlert() {
+    alert('All Blogs Deleted!!');
+    this.blogTitle = '';
+  }
+  reload() {
+    alert('Deleted');
+    location.reload();
+  }
+
+  onDeletePost() {
+    this.http.delete(this.firebaseUrl).subscribe((response) => {
+      console.log('Posts deleted: ' + response);
+    });
+    this.deleteAlert();
   }
 }
